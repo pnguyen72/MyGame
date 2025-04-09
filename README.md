@@ -7,5 +7,5 @@ See [javadoc](https://pnguyen72.github.io/MyGame/MyGame/MyGame.html).
 Start the [server](/src/code/MyGame/Server/MainServer.java) and keep it running, 
 then start the [program](/src/code/MyGame/MyGame.java).
 
-Requires a half-decent terminal that supports the ANSI escape codes (e.g.
+Requires a half-decent terminal that supports ANSI escape codes (e.g.
 does not work with IntelliJ, works with vscode).

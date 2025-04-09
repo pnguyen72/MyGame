@@ -4,6 +4,13 @@
 !*/
 !*.java
 !*.txt
+!*.png
+!*.svg
+!*.html
+!*.js
+!*.css
+!*.woff
+!*.woff2
 
 out
 res

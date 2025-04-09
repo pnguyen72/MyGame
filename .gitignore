@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+!*/
+!*.java
+!*.txt
+
+out
+res

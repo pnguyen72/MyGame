@@ -37,18 +37,12 @@ import java.util.Optional;
  * <pre>
  * {@value GameFiles#SERVER_FILE} the main server
  * {@value GameFiles#REQUESTS_DIR}: directory for clients join requests
- * | {@code
- * clientID
- * }: directory for an individual request
+ * | {@code clientID}: directory for an individual request
  * | | {@value GameFiles#CLIENT_FILE}: the client in this request
  * | | {@value GameFiles#SERVER_FILE}: the main server in response to this client
  * {@value GameFiles#GAMES_DIR}: directory for all games
- * | {@code
- * gameID
- * }: directory for an individual game
- * | | {@code
- * clientID
- * }: directory for an individual client in this game
+ * | {@code gameID}: directory for an individual game
+ * | | {@code clientID}: directory for an individual client in this game
  * | | | {@value GameFiles#CLIENT_FILE}: the client in this game
  * | | | {@value GameFiles#MOVE_FILE}: the move made by this client
  * | | | {@value GameFiles#SERVER_FILE}: the game server in response to this client

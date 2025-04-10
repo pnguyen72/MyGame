@@ -276,33 +276,12 @@ public final class Protocol
         {
             if(Files.isDirectory(filePath))
             {
-                emptyDirRecursive(filePath);
-                Files.deleteIfExists(filePath);
-            } else
-            {
-                Files.deleteIfExists(filePath);
+                try (final Stream<Path> filesStream = Files.list(filePath)) 
+                {
+                    filesStream.forEach(Protocol::removeRecursive);
+                }
             }
-        } catch(final Exception ignored)
-        {
-            /*
-             * Deleting stuff is not critical to this program's operation,
-             * it's just for cleaning up. So we should ignore all exception.
-             */
-        }
-    }
-
-    /**
-     * Recursively removes all files in a directory, but not the directory itself.
-     * Silently ignores all errors.
-     *
-     * @param dirPath the path to the directory
-     */
-    public static void emptyDirRecursive(final Path dirPath)
-    {
-        try(final Stream<Path> filesStream = Files.list(dirPath))
-        {
-            filesStream.forEach(Protocol::removeRecursive);
-
+            Files.deleteIfExists(filePath);
         } catch(final Exception ignored)
         {
             /*

@@ -14,18 +14,53 @@ public final class TUI
     public static final class Color
     {
         /**
-         * Background colors.
+         * ANSI escape codes for background colors.
          */
         public enum Background
         {
+            /**
+             * Black background color
+             */
             BLACK(40),
+
+            /**
+             * Red background color
+             */
             RED(41),
+
+            /**
+             * Green background color
+             */
             GREEN(42),
+
+            /**
+             * Yellow background color
+             */
             YELLOW(43),
+
+            /**
+             * Blue background color
+             */
             BLUE(44),
+
+            /**
+             * Magenta background color
+             */
             MAGENTA(45),
+
+            /**
+             * Cyan background color
+             */
             CYAN(46),
+
+            /**
+             * White background color
+             */
             WHITE(47),
+
+            /**
+             * Default background color
+             */
             DEFAULT(49);
 
             private final int value;
@@ -37,18 +72,53 @@ public final class TUI
         }
 
         /**
-         * Foreground colors
+         * ANSI escape codes for foreground colors.
          */
         public enum Foreground
         {
+            /**
+             * Black foreground color
+             */
             BLACK(30),
+
+            /**
+             * Red foreground color
+             */
             RED(31),
+
+            /**
+             * Green foreground color
+             */
             GREEN(32),
+
+            /**
+             * Yellow foreground color
+             */
             YELLOW(33),
+
+            /**
+             * Blue foreground color
+             */
             BLUE(34),
+
+            /**
+             * Magenta foreground color
+             */
             MAGENTA(35),
+
+            /**
+             * Cyan foreground color
+             */
             CYAN(36),
+
+            /**
+             * White foreground color
+             */
             WHITE(37),
+
+            /**
+             * Default foreground color
+             */
             DEFAULT(39);
 
             private final int value;

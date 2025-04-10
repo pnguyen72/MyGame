@@ -2,8 +2,8 @@ package mygame.multiplayer.server;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.UUID;
 
 import mygame.multiplayer.Protocol;
@@ -24,7 +24,7 @@ public final class MainServer
     private static final Path INTERRUPT_SIGNAL = Protocol.getInterruptSignal(SERVER);
     private static final Path REQUESTS         = Protocol.getRequests();
 
-    private final List<Path> requestsQueue;
+    private final Queue<Path> requestQueue;
 
     /**
      * Starts the server.
@@ -39,13 +39,7 @@ public final class MainServer
         System.out.println("Server started.");
         Protocol.reset();
 
-        /*
-         * It's a queue but there's no need to use the queue data structure,
-         * since we only have to invite the first two clients to a game,
-         * when received the invitation they will join the game and
-         * remove themselves from the queue.
-         */
-        requestsQueue = new ArrayList<>();
+        requestQueue = new ArrayDeque<>();
 
         new Connection(SERVER).allowInterrupt()
                               .then(this::handleInterrupt);
@@ -76,16 +70,6 @@ public final class MainServer
         Protocol.create(INTERRUPT_SIGNAL);
     }
 
-    /**
-     * Gets the requests queue
-     *
-     * @return the requests queue
-     */
-    public List<Path> getRequests()
-    {
-        return requestsQueue;
-    }
-
     /* Handles interrupt signal being raised. */
     private void handleInterrupt()
     {
@@ -108,16 +92,15 @@ public final class MainServer
         clientID      = request.getFileName().toString();
         requestClient = Protocol.getRequestClient(clientID);
 
-        requestsQueue.add(request);
+        requestQueue.add(request);
         Monitor.When.connectionLost(requestClient)
-                    .then(() -> requestsQueue.remove(request))
+                    .then(() -> requestQueue.remove(request))
                     .then(() -> Protocol.removeRecursive(request));
 
-        if(requestsQueue.size() >= TicTacToe.PLAYERS_PER_GAME)
+        if(requestQueue.size() >= TicTacToe.PLAYERS_PER_GAME)
         {
-            createGame(requestsQueue.stream()
-                                    .limit(TicTacToe.PLAYERS_PER_GAME)
-                                    .toArray(Path[]::new));
+            createGame(requestQueue.poll(),
+                       requestQueue.poll());
         }
     }
 
@@ -127,7 +110,7 @@ public final class MainServer
      * @param clients the clients that will play the game
      * @throws IllegalArgumentException if the number of clients is invalid
      */
-    private void createGame(final Path[] clients)
+    private void createGame(final Path... clients)
     {
         if(clients.length != TicTacToe.PLAYERS_PER_GAME)
         {

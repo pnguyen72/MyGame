@@ -22,6 +22,11 @@ public abstract class Monitor<T> extends PublisherService<T>
     private Service timer;
 
     /**
+     * Creates a monitor. The monitor does not start until a callback is added.
+     */
+    public Monitor() {}
+
+    /**
      * This method is called periodically to check for changes.
      * It should call {@link #publish} if there is an update.
      */
@@ -89,7 +94,8 @@ public abstract class Monitor<T> extends PublisherService<T>
         }
 
         /**
-         * Creates a connection monitor. Does not start until a callback is added.
+         * Creates a connection monitor.
+         * The monitor does not start until a callback is added.
          *
          * @param connectionPath path to the connection file
          * @return a {@link PublisherService} that publishes the connection path when the

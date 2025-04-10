@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"MyGame"},{"l":"MyGame.Client"},{"l":"MyGame.Game"},{"l":"MyGame.Interfaces"},{"l":"MyGame.Server"},{"l":"MyGame.Services"},{"l":"MyGame.Terminal"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"mygame"},{"l":"mygame.game"},{"l":"mygame.multiplayer"},{"l":"mygame.multiplayer.client"},{"l":"mygame.multiplayer.server"},{"l":"mygame.multiplayer.services"},{"l":"mygame.terminal"}];updateSearchResults();

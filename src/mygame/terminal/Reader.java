@@ -178,14 +178,14 @@ public final class Reader
      */
     public <T extends Enum<?>> T prompt(final String prompt, final Class<T> options)
     {
-        final IntConsumer discarded;
+        final IntConsumer discard;
         int               maxCursorDY;
 
-        discarded = _ ->
+        discard = ignored ->
         {
             /*
-             * terminal.getCursorPosition takes an IntConsumer, but we don't need to do
-             * anything with the value
+             * terminal.getCursorPosition takes an IntConsumer, 
+             * but we don't need to do anything with the value
              */
         };
         // Keep track of how far the cursor moves to handle when user enters invalid input
@@ -206,9 +206,9 @@ public final class Reader
             final int         cursorDY;
 
             // Read cursor position, read console line, then read cursor position again
-            cursorY     = terminal.getCursorPosition(discarded).getY();
+            cursorY     = terminal.getCursorPosition(discard).getY();
             input       = readLine();
-            cursorDY    = terminal.getCursorPosition(discarded).getY() - cursorY;
+            cursorDY    = terminal.getCursorPosition(discard).getY() - cursorY;
             maxCursorDY = Math.max(maxCursorDY, cursorDY);
 
             // Jump cursor down to the output line

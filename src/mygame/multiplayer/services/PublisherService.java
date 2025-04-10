@@ -59,7 +59,7 @@ public abstract class PublisherService<T> implements Publisher<T>, Service
      */
     public final PublisherService<T> then(final Runnable callback)
     {
-        return then((_) -> callback.run());
+        return then((ignored) -> callback.run());
     }
 
     @Override

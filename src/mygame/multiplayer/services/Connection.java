@@ -25,7 +25,7 @@ import mygame.multiplayer.Subscriber;
  */
 public final class Connection implements Service
 {
-    private static final int BUFFER_MILLIS  = 30;
+    private static final int BUFFER_MILLIS  = 50;
     private static final int TIMEOUT_MILLIS = Scheduler.CLOCK_PERIOD_MILLIS +
                                               BUFFER_MILLIS;
 

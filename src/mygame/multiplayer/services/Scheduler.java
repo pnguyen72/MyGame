@@ -22,7 +22,7 @@ public final class Scheduler
      * It's tempting to make this number as small as possible,
      * but if it's too small, the OS complains with a bunch of IO errors.
      */
-    static final int CLOCK_PERIOD_MILLIS = 300;
+    static final int CLOCK_PERIOD_MILLIS = 500;
 
     private static final int IMMEDIATELY = 0;
 

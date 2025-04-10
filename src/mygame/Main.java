@@ -82,22 +82,27 @@ public final class Main
     /**
      * Plays the game repeatedly until the user chooses to quit.
      *
-     * @param opponent the opponent to play against,
+     * @param arg the opponent to play against,
      *                 or {@code null} to prompt the user to choose
      */
-    private static void playLoop(Opponent opponent)
+    private static void playLoop(final Opponent arg)
     {
         do
         {
+            final Opponent         opponent;
             final TicTacToe.Status gameResult;
 
             TUI.clearScreen();
-            if(opponent == null)
+            System.out.println("Welcome to multiplayer Tic Tac Toe!");
+            System.out.println();
+
+            if(arg == null)
             {
-                System.out.println("Welcome to multiplayer Tic Tac Toe!");
-                System.out.println();
                 opponent = terminal.prompt("Play against CPU or another player?",
                                            Opponent.class);
+            } else
+            {
+                opponent = arg;
             }
 
             gameResult = switch(opponent)
